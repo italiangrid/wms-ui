@@ -19,6 +19,12 @@
 #
 #       Revision history:
 #       $Log$
+#       Revision 1.9  2004/09/22 01:01:27  dimeglio
+#       Fixed missing parenthesis in AC_INIT
+#
+#       Revision 1.8  2004/09/21 19:24:45  glbuild
+#       modified module.version
+#
 #       Revision 1.7  2004/07/28 10:51:21  eronchie
 #       Added m4files.list property
 #
@@ -57,7 +63,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
-AC_INIT([GLite WMS Helper], [0.0.0])
+AC_INIT([GLite WMS Helper], [0.1.0])
 AC_CONFIG_AUX_DIR([./project])
 AM_INIT_AUTOMAKE([1.6.3 subdir-objects])
 AC_CONFIG_SRCDIR([src/Helper.h])
@@ -144,3 +150,4 @@ AC_CONFIG_FILES([src/jobadapter/jobwrapper/Makefile])
 AC_CONFIG_FILES([src/jobadapter/url/Makefile])
 
 AC_OUTPUT
+
