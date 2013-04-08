@@ -183,12 +183,6 @@ if(NOT "${PYTHON_EXECUTABLE}" STREQUAL "PYTHON_EXECUTABLE-NOTFOUND"  )
   set(OKPYTHON "1")
 endif(NOT "${PYTHON_EXECUTABLE}" STREQUAL "PYTHON_EXECUTABLE-NOTFOUND"  )
 
-EXEC_PROGRAM(python ARGS
-  "-c 'import platform; print platform.python_version()' | awk -F'.' '{print
-$1\".\"$2}' "
-  OUTPUT_VARIABLE
-  PYTHON_VERSION)
-
 if(EXISTS "/usr/bin/swig" 
     OR EXISTS "/bin/swig"
     OR EXISTS "/usr/local/bin/swig"
@@ -205,7 +199,16 @@ endif(EXISTS "/usr/bin/swig"
     OR EXISTS "/usr/local/bin/swig"
     OR EXISTS "/opt/local/bin/swig")
 
-set(PYTHON_INCLUDES "/usr/include/python${PYTHON_VERSION}")
+set(PARAM "-c 'import platform\; a=platform.python_version().split(\".\")\; print \".\".join([a[0], a[1]])'"
+)
+
+EXEC_PROGRAM(python ARGS
+  ${PARAM}
+  OUTPUT_VARIABLE
+  PYTHON_VERSION
+)
+
+set(PYTHON_INCLUDE "/usr/include/python${PYTHON_VERSION}")
 
 if(NOT DEFINED OKPYTHON)
   message(WARNING " *** Missing python interpreter")
@@ -260,6 +263,7 @@ them via yum. Please intert your password" )
   EXEC_PROGRAM(sudo ARGS yum -y install 
 doxygen
 python
+python-devel
 swig
 boost
 boost-devel
