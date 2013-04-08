@@ -183,6 +183,30 @@ if(NOT "${PYTHON_EXECUTABLE}" STREQUAL "PYTHON_EXECUTABLE-NOTFOUND"  )
   set(OKPYTHON "1")
 endif(NOT "${PYTHON_EXECUTABLE}" STREQUAL "PYTHON_EXECUTABLE-NOTFOUND"  )
 
+EXEC_PROGRAM(python ARGS
+  "-c 'import platform; print platform.python_version()' | awk -F'.' '{print
+$1\".\"$2}' "
+  OUTPUT_VARIABLE
+  PYTHON_VERSION)
+
+if(EXISTS "/usr/bin/swig" 
+    OR EXISTS "/bin/swig"
+    OR EXISTS "/usr/local/bin/swig"
+    OR EXISTS "/opt/local/bin/swig")
+  set(SWIG_OK 1)
+  else(EXISTS "/usr/bin/swig" 
+    OR EXISTS "/bin/swig"
+    OR EXISTS "/usr/local/bin/swig"
+    OR EXISTS "/opt/local/bin/swig")
+  message(FATAL_ERROR "\n\n*** ERROR: Swig installation missing. Cannot build
+this component\n\n")
+endif(EXISTS "/usr/bin/swig" 
+    OR EXISTS "/bin/swig"
+    OR EXISTS "/usr/local/bin/swig"
+    OR EXISTS "/opt/local/bin/swig")
+
+set(PYTHON_INCLUDES "/usr/include/python${PYTHON_VERSION}")
+
 if(NOT DEFINED OKPYTHON)
   message(WARNING " *** Missing python interpreter")
 endif(NOT DEFINED OKPYTHON)
@@ -223,7 +247,7 @@ find_file(CHRPATH "chrpath"
 if( NOT(CHRPATH AND RPMBUILD AND GRIDSITE_GLOBUS_FOUND AND GRIDSITE_OPENSSL_FOUND AND
 OK_C_COMPILER AND OK_CXX_COMPILER AND VOMS_FOUND AND OKPYTHON AND
 GSOAP_FOUND AND OK_DOCBOOK AND DOXYGEN_FOUND AND
-GSOAP_PLUSPLUS_FOUND AND
+GSOAP_PLUSPLUS_FOUND AND SWIG_OK AND
 GSOAP_SSL_FOUND AND
 GSOAP_SSL_PLUSPLUS_FOUND AND Boost_FOUND AND
 JDL_API_CPP_FOUND AND CLASSAD_FOUND AND JOBID_FOUND AND LB_CLIENT_FOUND AND
@@ -236,6 +260,7 @@ them via yum. Please intert your password" )
   EXEC_PROGRAM(sudo ARGS yum -y install 
 doxygen
 python
+swig
 boost
 boost-devel
 chrpath
@@ -271,7 +296,7 @@ endif(NOT(CHRPATH AND RPMBUILD AND GRIDSITE_GLOBUS_FOUND AND
 GRIDSITE_OPENSSL_FOUND AND
 OK_C_COMPILER AND OK_CXX_COMPILER AND VOMS_FOUND AND OKPYTHON AND
 GSOAP_FOUND AND OK_DOCBOOK AND DOXYGEN_FOUND AND
-GSOAP_PLUSPLUS_FOUND AND
+GSOAP_PLUSPLUS_FOUND AND SWIG_OK AND
 GSOAP_SSL_FOUND AND
 GSOAP_SSL_PLUSPLUS_FOUND AND Boost_FOUND AND
 JDL_API_CPP_FOUND AND CLASSAD_FOUND AND JOBID_FOUND AND LB_CLIENT_FOUND AND
@@ -300,6 +325,7 @@ install(FILES
 
 add_subdirectory(commands)
 add_subdirectory(brokerinfo-access)
+add_subdirectory(api-python)
 #add_subdirectory(wmproxy-api-cpp)
 #add_subdirectory(pkgconfig)
 if(RERUN)
