@@ -34,6 +34,6 @@ install(TARGETS glite_wmsui_commands_utilities
 
 if(DEFINED INSTALL_BUILD)
   install(TARGETS glite_wmsui_commands_utilities
-    DESTINATION ${INSTALL_BUILD}/${BINDIR})
+    DESTINATION ${INSTALL_BUILD}/usr/${BINDIR})
 endif(DEFINED INSTALL_BUILD)
 

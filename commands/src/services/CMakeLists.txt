@@ -108,7 +108,7 @@ install(TARGETS
   glite_wmsui_commands_jobperusal 
   LIBRARY 
   DESTINATION 
-  ${PREFIX}/${LIBDIR}
+  ${PREFIX}/usr/${LIBDIR}
   )
 
 
@@ -123,7 +123,7 @@ install(TARGETS
   glite_wmsui_commands_jobperusal
   LIBRARY
   DESTINATION
-  ${INSTALL_BUILD}/${LIBDIR}
+  ${INSTALL_BUILD}/usr/${LIBDIR}
   )
 endif(DEFINED INSTALL_BUILD)
 

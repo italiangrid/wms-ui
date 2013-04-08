@@ -163,7 +163,7 @@ install(TARGETS
   glite-wms-job-list-match 
   glite-wms-job-output 
   glite-wms-job-perusal
-  DESTINATION ${PREFIX}/${BINDIR})
+  DESTINATION ${PREFIX}/usr/${BINDIR})
 
 if(DEFINED INSTALL_BUILD)
   install(TARGETS 
@@ -174,6 +174,6 @@ if(DEFINED INSTALL_BUILD)
     glite-wms-job-list-match 
     glite-wms-job-output 
     glite-wms-job-perusal
-    DESTINATION ${INSTALL_BUILD}/${BINDIR})
+    DESTINATION ${INSTALL_BUILD}/usr/${BINDIR})
 endif(DEFINED INSTALL_BUILD)
 
