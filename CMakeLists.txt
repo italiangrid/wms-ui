@@ -63,7 +63,7 @@ for source distribution)
   ADD_CUSTOM_TARGET (MOCK @echo trying to build in the mock environment)
 
   ADD_CUSTOM_COMMAND(TARGET MOCK
-    COMMAND mock ARGS -r ${MOCKCFG} rpmbuild/SRPMS/glite-wms-api-${PVER}-${AGE}.${OS}.src.rpm
+    COMMAND mock ARGS -r ${MOCKCFG} rpmbuild/SRPMS/glite-wms-ui-${PVER}-${AGE}.${OS}.src.rpm
   )
   
   ADD_CUSTOM_COMMAND(TARGET RPM
@@ -71,16 +71,16 @@ for source distribution)
     # the uses didn't it already
     COMMAND make ARGS install
     COMMAND find ARGS ${PREFIX} -iname "*egg-info" -delete
-    COMMAND rm ARGS -f /tmp/glite-wms-api-${PVER}-${AGE}.${OS}.tar.gz
+    COMMAND rm ARGS -f /tmp/glite-wms-ui-${PVER}-${AGE}.${OS}.tar.gz
     COMMAND ${PROJECT_SOURCE_DIR}/maketarball.sh ARGS ${PVER} ${AGE} ${OS} "${PREFIX}"
 ${PROJECT_SOURCE_DIR}
     COMMAND mkdir ARGS -p rpmbuild/SPECS rpmbuild/SRPMS rpmbuild/BUILD rpmbuild/RPMS rpmbuild/SOURCES
-    COMMAND mv ARGS /tmp/glite-wms-api-${PVER}-${AGE}.${OS}.tar.gz rpmbuild/SOURCES/
+    COMMAND mv ARGS /tmp/glite-wms-ui-${PVER}-${AGE}.${OS}.tar.gz rpmbuild/SOURCES/
     COMMAND sed ARGS -e 's/%{extversion}/${PVER}/g' -e 's/%{extage}/${AGE}/g'
 -e 's/%{extdist}/${OS}/g' -e 's/%{extcdate}/${DATE}/g' -e 's/%{extclog}/Bug
-fixing/g' < project/wms-api.spec > rpmbuild/SPECS/wms-api.spec
+fixing/g' < project/wms-ui.spec > rpmbuild/SPECS/wms-ui.spec
     COMMAND rpmbuild ARGS -ba --define "_topdir `pwd`/rpmbuild" --define
-"extbuilddir ${PREFIX}" `pwd`/rpmbuild/SPECS/wms-api.spec
+"extbuilddir ${PREFIX}" `pwd`/rpmbuild/SPECS/wms-ui.spec
   )
   
   ADD_CUSTOM_COMMAND(TARGET distclean
