@@ -84,7 +84,7 @@ install(FILES
   glite-wms-job-status.1.gz
   glite-wms-job-submit.1.gz
   DESTINATION
-  ${PREFIX}/share/man/man1
+  ${PREFIX}/usr/share/man/man1
 )
 
 if(DEFINED INSTALL_BUILD)

@@ -29,7 +29,7 @@ set_target_properties(glite_wmsui_commands_utilities  PROPERTIES VERSION 0.0.0 S
 
 install(TARGETS glite_wmsui_commands_utilities 
   LIBRARY 
-  DESTINATION ${PREFIX}/${LIBDIR} )
+  DESTINATION ${PREFIX}/usr/${LIBDIR} )
 
 
 if(DEFINED INSTALL_BUILD)

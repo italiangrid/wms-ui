@@ -11,7 +11,7 @@ BuildRequires: %{!?extbuilddir: glite-wms-wmproxy-api-cpp-devel,glite-wms-wmprox
 BuildRequires: %{!?extbuilddir: gridsite-devel, glite-wms-utils-exception-devel,} classads-devel
 BuildRequires: %{!?extbuilddir: glite-jobid-api-cpp-devel, glite-jdl-api-cpp-devel,} boost-devel
 BuildRequires: %{!?extbuilddir: glite-lb-client-devel, glite-wms-ui-api-python,} libtar-devel, swig
-BuildRequires: %{!?extbuilddir: voms-devel, }  zlib-devel
+BuildRequires: %{!?extbuilddir: voms-devel, }  zlib-devel, doxygen, docbook-style-xsl
 BuildRequires: %{!?extbuilddir:glite-build-common-cpp, } docbook-style-xsl, libxslt, c-ares-devel, libxslt-devel
 BuildRequires: globus-common-devel, globus-callout-devel, globus-openssl-devel, python-devel
 BuildRequires: globus-openssl-module-devel, globus-gsi-callback-devel, globus-gsi-cert-utils-devel
@@ -49,6 +49,7 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}
 if test "x%{extbuilddir}" == "x-" ; then
   make install
+  cp -R brokerinfo-access/doc/autodoc/html %{buildroot}/%{_docdir}/%{name}-%{version}
 else
   cp -R %{extbuilddir}/* %{buildroot}
 fi
@@ -74,12 +75,13 @@ rm -rf %{buildroot}
 %config(noreplace) /etc/glite_wmsui_cmd_*
 %dir /usr/share/doc/glite-wms-ui-%{version}/
 %doc /usr/share/doc/glite-wms-ui-%{version}/LICENSE
+%doc /usr/share/doc/glite-wms-ui-%{version}/CHANGES
 %doc /usr/share/man/man1/*.1.gz
-/usr/lib64/libglite_wmsui*
 /usr/bin/glite-wms-job-*
-/usr/lib64/*.so.0.0.0
-/usr/lib64/*.so.0
-/usr/lib64/*.so
+/usr/bin/glite-brokerinfo
+/usr/lib64/libglite*.so*
+/usr/lib64/_glite_wmsui_*.so*
+%dir /usr/lib64/python
 /usr/lib64/python/glite_wmsui_AdWrapper.*
 /usr/lib64/python/glite_wmsui_SdWrapper.*
 /usr/lib64/python/glite_wmsui_LbWrapper.*
@@ -89,7 +91,27 @@ rm -rf %{buildroot}
 /usr/lib64/python/wmsui_checks.*
 /usr/lib64/python/wmsui_listener.*
 /usr/lib64/python/wmsui_utils.*
+%dir /usr/include/glite/
+%dir /usr/include/glite/wms/
+%dir /usr/include/glite/wms/brokerinfo-access/
+/usr/include/glite/wms/brokerinfo-access/*.h
+/usr/lib64/pkgconfig/brokerinfo-access.pc
+/usr/lib64/libglite-brokerinfo.so
 
+%package doc
+Summary: Documentation files for the brokerinfo access component
+Group: Documentation
+
+%description doc
+Documentation files for the brokerinfo access component
+
+%files doc
+%defattr(-,root,root)
+%dir %{_docdir}/brokerinfo-access-%{version}/html
+%doc %{_docdir}/brokerinfo-access-%{version}/html/*.html
+%doc %{_docdir}/brokerinfo-access-%{version}/html/*.css
+%doc %{_docdir}/brokerinfo-access-%{version}/html/*.png
+%doc %{_docdir}/brokerinfo-access-%{version}/html/*.gif
 
 %changelog
 * %{extcdate} WMS group <wms-support@lists.infn.it> - %{extversion}-%{extage}.%{extdist}
