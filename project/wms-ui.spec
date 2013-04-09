@@ -19,7 +19,7 @@ BuildRequires: globus-gsi-credential-devel, globus-gsi-openssl-error-devel, glob
 BuildRequires: globus-gsi-proxy-ssl-devel, globus-gsi-sysconfig-devel,globus-gssapi-error-devel
 BuildRequires: globus-gssapi-gsi-devel, globus-gss-assist-devel, cppunit-devel
 BuildRequires: globus-ftp-client-devel, globus-ftp-control-devel, libxml2-devel, emi-pkgconfig-compat
-Requires: globus-gass-copy-progs, swig, python
+Requires: globus-gass-copy-progs, swig, python, glite-yaim-core, glite-yaim-clients, fetch-crl
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 AutoReqProv: yes
 Source: %{name}-%{version}-%{release}.tar.gz
