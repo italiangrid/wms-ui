@@ -191,7 +191,7 @@ install(FILES
   autogen/glite_wmsui_AdWrapper.py
   autogen/glite_wmsui_SdWrapper.py
   DESTINATION 
-  ${PREFIX}/usr/${LIBDIR}/python${PYTHON_VERSION}
+  ${PREFIX}/usr/${LIBDIR}/python
 )
 
 install(FILES 
