@@ -139,6 +139,7 @@ pkg_check_modules(VOMS REQUIRED voms-2.0)
 pkg_check_modules(GLOBUS_GSS_ASSIST REQUIRED globus-gss-assist)
 pkg_check_modules(LIBXSLT REQUIRED libxslt)
 pkg_check_modules(WMSAPI REQUIRED wms-api)
+pkg_check_modules(CPPUNIT REQUIRED cppunit)
 
 set(OK_DOCBOOK "1")
 
@@ -244,6 +245,7 @@ message(WARNING " ---> WMSAPI_FOUND=${WMSAPI_FOUND}")
 message(WARNING " ---> Doxygen=${DOXYGEN_FOUND}" )
 message(WARNING " ---> OKPYTHON=${OKPYTHON}" )
 message(WARNING " ---> SWIG_OK=${SWIG_OK}" )
+message(WARNING " ---> CPPUNIT=${CPPUNIT_FOUND}" )
 
 if( NOT(CHRPATH AND RPMBUILD AND GRIDSITE_GLOBUS_FOUND AND GRIDSITE_OPENSSL_FOUND AND
 OK_C_COMPILER AND OK_CXX_COMPILER AND VOMS_FOUND AND OKPYTHON AND
@@ -289,6 +291,7 @@ glite-wms-api
 globus-gss-assist-devel
 glite-jdl-api-cpp-devel
 glite-wms-api
+cppunit-devel
 gcc
 gcc-c++
 libstdc++
