@@ -1,4 +1,4 @@
-project(wms-api C CXX)
+project(wms-ui C CXX)
 cmake_minimum_required(VERSION 2.6)
 
 if(NOT ${CMAKE_C_COMPILER} STREQUAL "CMAKE_C_COMPILER-NOTFOUND")
