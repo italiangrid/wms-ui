@@ -10,7 +10,7 @@ BuildArch: %{_arch}
 BuildRequires: %{!?extbuilddir: glite-wms-wmproxy-api-cpp-devel,glite-wms-wmproxy-api-cpp,} chrpath, cmake
 BuildRequires: %{!?extbuilddir: gridsite-devel, glite-wms-utils-exception-devel,} classads-devel
 BuildRequires: %{!?extbuilddir: glite-jobid-api-cpp-devel, glite-jdl-api-cpp-devel,} boost-devel
-BuildRequires: %{!?extbuilddir: glite-lb-client-devel, glite-wms-ui-api-python,} libtar-devel, swig
+BuildRequires: %{!?extbuilddir: glite-lb-client-devel, } libtar-devel, swig
 BuildRequires: %{!?extbuilddir: voms-devel, }  zlib-devel, doxygen, docbook-style-xsl
 BuildRequires: %{!?extbuilddir:glite-build-common-cpp, } docbook-style-xsl, libxslt, c-ares-devel, libxslt-devel
 BuildRequires: globus-common-devel, globus-callout-devel, globus-openssl-devel, python-devel
@@ -19,7 +19,7 @@ BuildRequires: globus-gsi-credential-devel, globus-gsi-openssl-error-devel, glob
 BuildRequires: globus-gsi-proxy-ssl-devel, globus-gsi-sysconfig-devel,globus-gssapi-error-devel
 BuildRequires: globus-gssapi-gsi-devel, globus-gss-assist-devel, cppunit-devel
 BuildRequires: globus-ftp-client-devel, globus-ftp-control-devel, libxml2-devel, emi-pkgconfig-compat
-Requires: glite-wms-ui-api-python, globus-gass-copy-progs, swig, python
+Requires: globus-gass-copy-progs, swig, python
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 AutoReqProv: yes
 Source: %{name}-%{version}-%{release}.tar.gz
