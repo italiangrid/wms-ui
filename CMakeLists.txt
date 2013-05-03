@@ -33,7 +33,7 @@ if(NOT DEFINED PVER)
 endif(NOT DEFINED PVER)
 
 if(NOT DEFINED PREFIX)
-    message(WARNING " Undefined prefix, selected /usr/local")
+    message(WARNING " Undefined PREFIX, selected /tmp")
     set(PREFIX "/tmp/")
 endif(NOT DEFINED PREFIX)
 
