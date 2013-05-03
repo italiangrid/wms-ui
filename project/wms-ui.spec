@@ -7,7 +7,7 @@ Vendor: EMI
 URL: http://glite.cern.ch/
 Group: System Environment/Libraries
 BuildArch: %{_arch}
-BuildRequires: %{!?extbuilddir: glite-wms-wmproxy-api-cpp-devel,glite-wms-wmproxy-api-cpp,} chrpath, cmake
+BuildRequires: %{!?extbuilddir: glite-wms-wmproxy-api-cpp-devel,glite-wms-wmproxy-api-cpp,} chrpath, cmake, glite-wms-api-devel
 BuildRequires: %{!?extbuilddir: gridsite-devel, glite-wms-utils-exception-devel,} classads-devel
 BuildRequires: %{!?extbuilddir: glite-jobid-api-cpp-devel, glite-jdl-api-cpp-devel,} boost-devel
 BuildRequires: %{!?extbuilddir: glite-lb-client-devel, } libtar-devel, swig
@@ -19,7 +19,7 @@ BuildRequires: globus-gsi-credential-devel, globus-gsi-openssl-error-devel, glob
 BuildRequires: globus-gsi-proxy-ssl-devel, globus-gsi-sysconfig-devel,globus-gssapi-error-devel
 BuildRequires: globus-gssapi-gsi-devel, globus-gss-assist-devel, cppunit-devel
 BuildRequires: globus-ftp-client-devel, globus-ftp-control-devel, libxml2-devel, emi-pkgconfig-compat
-Requires: globus-gass-copy-progs, swig, python, glite-yaim-core, glite-yaim-clients, fetch-crl
+Requires: globus-gass-copy-progs, swig, python, glite-yaim-core, glite-yaim-clients, fetch-crl, glite-wms-api
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 AutoReqProv: yes
 Source: %{name}-%{version}-%{release}.tar.gz
