@@ -301,10 +301,9 @@ libxslt
 classads-devel
 glite-wms-utils-classad
 glite-wms-utils-exception-devel
-glite-wms-api
+glite-wms-api-devel
 globus-gss-assist-devel
 glite-jdl-api-cpp-devel
-glite-wms-api
 cppunit-devel
 libtar-devel
 c-ares-devel
