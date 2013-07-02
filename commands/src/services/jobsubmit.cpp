@@ -1843,7 +1843,7 @@ std::string JobSubmit::getJobPath(const std::string& node) {
     string path = "";
     vector <JobFileAd>::iterator it1 = fileads.begin( );
     vector <JobFileAd>::iterator const end1 = fileads.end( );
-    for ( ; it1 != end1; it1++ ) {
+    for ( ; it1 != end1; it1++ ) { 
       jobpath = this->getJobPath(it1->node);
       system((string("mkdir -p ")+jobpath).c_str());
       filesToTAR.push_back( jobpath );
@@ -1854,10 +1854,11 @@ std::string JobSubmit::getJobPath(const std::string& node) {
  	file = it2->file;
   	//path = jobpath + "/" + Utils::getFileName(it2->file);
 
-	//	logInfo->print(WMS_DEBUG, "tar - Copying local file: " + file,
-	//		       " into directory: " + jobpath, false);
+		logInfo->print(WMS_DEBUG, "tar - Copying local file: " + file,
+			       " into directory: " + jobpath, false);
 
 	string basenameFile = ::basename( file.c_str() );
+	//logInfo->print(WMS_FATAL, "basenameFile="+basenameFile, false);;
 	boost::filesystem::path srcPath(file, boost::filesystem::native);
 	boost::filesystem::path dstPath(jobpath+"/"+basenameFile, boost::filesystem::native);
 	boost::filesystem::copy_file( srcPath, dstPath );
@@ -1870,14 +1871,22 @@ std::string JobSubmit::getJobPath(const std::string& node) {
     system(command.c_str());
 
     boost::uintmax_t tarSize = boost::filesystem::file_size( tarfile );
+
+    string maxISBSize = boost::lexical_cast<string>( api::getMaxInputSandboxSize(getContext( )) );
+
     if(tarSize > api::getMaxInputSandboxSize(getContext( ))) {
-      logInfo->print(WMS_FATAL,
+/*      logInfo->print(WMS_FATAL,
 		     "ISB tarball size for [" + tarfile + "] is " 
-		     + boost::lexical_cast<string>(tarSize) 
+		     + boost::lexical_cast<string>( tarSize ) 
 		     + " exceeds the MaxInputSandboxSize specified in the JDL ("
-		     + boost::lexical_cast<string>(api::getMaxInputSandboxSize(getContext( )))
-		     + ")", false);
-      exit(1);
+		     + boost::lexical_cast<string>( maxISBSize )
+		     + ")", false); */
+	
+       throw WmsClientException(__FILE__,__LINE__,
+                                    "FileSize problem",  DEFAULT_ERR_CODE,
+                                    "\n",
+                                    "The tar archive size is greater than the maximum allowed by WMS (" + maxISBSize+" bytes)" );	
+//      exit(1);
     }
 
     system((string("gzip -9 ")+tarfile).c_str());
