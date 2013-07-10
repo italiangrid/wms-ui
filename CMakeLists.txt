@@ -129,7 +129,7 @@ find_program(Make REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem date_time filesystem regex
 thread program_options)
 find_package(Doxygen)
-pkg_check_modules(GRIDSITE_GLOBUS REQUIRED gridsite-globus)
+#pkg_check_modules(GRIDSITE_GLOBUS REQUIRED gridsite-globus)
 pkg_check_modules(GRIDSITE_OPENSSL REQUIRED gridsite-openssl)
 pkg_check_modules(GSOAP REQUIRED gsoap)
 pkg_check_modules(GSOAP_PLUSPLUS REQUIRED gsoap++)
