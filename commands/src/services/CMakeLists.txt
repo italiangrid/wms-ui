@@ -7,6 +7,7 @@ include_directories(
   ${JOBID_INCLUDE_DIRS} 
   ${JDL_API_CPP_INCLUDE_DIRS} 
   ${CLASSAD_INCLUDE_DIRS} 
+  ${WMSAPI_INCLUDE_DIRS}
   )
 
 add_custom_target(WMSUISERVICES DEPENDS

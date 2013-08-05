@@ -4,12 +4,13 @@ include_directories(${CLASSAD_INCLUDE_DIRS}
 		    ${PROJECT_SOURCE_DIR}/src/services
 		    ${PROJECT_SOURCE_DIR}/src/utilities
 		    ${WMPROXY_API_CPP_INCLUDE_DIRS}
+		    ${WMSAPI_INCLUDE_DIRS}
 		    )
 
 
 
 link_directories(${PREFIX}/usr/${LIBDIR}
-		 ${WMPROXY_API_CPP_LIBRARY_DIRS})
+		 ${WMSAPI_LIBRARY_DIRS})
 
 
 add_executable(
